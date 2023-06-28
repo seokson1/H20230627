@@ -19,10 +19,7 @@
 		<td><c:out value="${member.userName }"></c:out></td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.userBirth }"/></td>
 		<td><c:out value="${member.userPhone}"></c:out></td>
-		<td>
-			<img width="100px" src="images/${member.userImg}" />
-			<%-- <c:out value="${member.userImg}"></c:out> --%>
-		</td>
+		<td> <img width="100px" src='images/${member.userImg }'/></td>
 		</tr>
 		</c:forEach>
 	</tbody>

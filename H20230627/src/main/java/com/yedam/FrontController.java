@@ -13,10 +13,14 @@ import javax.sql.rowset.serial.SerialException;
 import javax.swing.text.View;
 
 import com.yedam.common.Control;
+import com.yedam.member.control.CalendarForm;
 import com.yedam.member.control.ChartDataControl;
 import com.yedam.member.control.ChartFormControl;
+import com.yedam.member.control.ImageUpLoadControl;
 import com.yedam.member.control.LoginControl;
 import com.yedam.member.control.LoginFormControl;
+import com.yedam.member.control.MemberInfoControl;
+import com.yedam.member.control.MemberModifyControl;
 import com.yedam.member.control.MemeberListControl;
 
 public class FrontController extends HttpServlet {
@@ -34,9 +38,13 @@ public class FrontController extends HttpServlet {
 		menu.put("/memberList.do", new MemeberListControl());
 		menu.put("/loginForm.do", new LoginFormControl());
 		menu.put("/login.do", new LoginControl());
+		menu.put("/memberInfo.do", new MemberInfoControl());
+		menu.put("/memberModify.do", new MemberModifyControl());
+		menu.put("/imageUpload.do", new ImageUpLoadControl());
 		
 		menu.put("/chartForm.do", new ChartFormControl());
 		menu.put("/chartData.do", new ChartDataControl());
+		menu.put("/calendar.do", new CalendarForm());
 	}
 
 	@Override

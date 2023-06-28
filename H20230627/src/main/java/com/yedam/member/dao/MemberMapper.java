@@ -17,4 +17,11 @@ public interface MemberMapper {
 	
 	public List<Map<String, Object>> chartData();
 	
+	public MemberVO select(@Param("id") String id);
+	
+	public int update(MemberVO member);
+	
+	public int updateImage(MemberVO member);
 }
+	
+	

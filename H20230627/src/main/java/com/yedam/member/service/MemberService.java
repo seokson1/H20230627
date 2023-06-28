@@ -9,6 +9,9 @@ public interface MemberService {
 	public List<MemberVO> members();
 	public MemberVO login(String id, String pw);
 	public List<Map<String, Object>> getData();
+	public MemberVO getMember(String id);
+	public boolean modifyMember(MemberVO vo);
+	public boolean modifyImage(MemberVO member);
 	
 }
 
