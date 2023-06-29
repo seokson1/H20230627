@@ -10,7 +10,7 @@ public class BoardForm implements Control {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
 
-		return null;
+		return "main/main.tiles";
 	}
 
 }

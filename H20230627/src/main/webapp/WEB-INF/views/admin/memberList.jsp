@@ -26,4 +26,3 @@
 		</c:forEach>
 	</tbody>
 </table>
-
