@@ -9,7 +9,9 @@ public class LoginFormControl implements Control {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
-
+		
+		
+		
 		String page = "member/loginForm.jsp";
 		
 		return page;
