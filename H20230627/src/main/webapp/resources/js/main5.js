@@ -18,16 +18,3 @@ array1.forEach(function(element, idx, ary) {
 });
 
 
-let btn = document.createElement('button');
-btn.addEventListener('change', function(e){
-	
-})
-document.getElementById('userInput').addEventListener('change', function(e){
-	document.querySelector('input').enterKeyHint();
-})
-let input = document.querySelector('input.userInput').value;
-let div = document.getElementsByClassName('outer');
-let span = document.getElementById('span');
-let inputDiv = input.appendChild(div);
-inputDiv.appendChild(span);
-

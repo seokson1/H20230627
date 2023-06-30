@@ -40,7 +40,7 @@
 	}
 	.outer span{
 		display: inline-block;
-		width: 80px;
+		width: 110px;
 		height: 30px;
 		margin: 2px;
 		padding: 2px;
@@ -52,8 +52,14 @@
 <input type="text" id="userInput"><br>
 <br>
 <div class="outer">
-	<span id="span">hello</span>
+	<p id="time"></p>
 </div>
+<script>
+	let secs = 100;
+	setInterval(function() {
+		//document.getElementById('time').innerText = new Date();
+		document.getElementById('time').innerText = secs--;
+	}, 1000);
+</script>
 
-
-<script src="resources/js/main4.js"></script>
+<script src="resources/js/main6.js"></script>

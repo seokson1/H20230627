@@ -4,22 +4,31 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.yedam.board.dao.BoardMapper;
-import com.yedam.board.vo.BoardVO;
+import com.yedam.board.dao.ReplyMapper;
+import com.yedam.board.vo.ReplyVO;
 import com.yedam.common.DataSource;
 
 public class TestMain {
 
 	public static void main(String[] args) {
 		SqlSession session = DataSource.getInstance().openSession();
-		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
 		
+		ReplyVO vo = new ReplyVO();
 		
-		List<BoardVO> list = mapper.listBoard();
+		vo.setBrdNo(182);
+		vo.setReply("새로 수정");
+		vo.setReplyer("uiser5");
 		
-		for(BoardVO brd : list) {
-			System.out.println(brd);
+		mapper.insertReply(vo);
+		//mapper.updateReply(vo);
+		//mapper.deleteReply(2);
+		
+		List<ReplyVO> list = mapper.selectList(182);
+		for(ReplyVO re : list) {
+			System.out.println(re.toString());
 		}
+	
 		
 		
 	}

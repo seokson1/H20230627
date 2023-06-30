@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.board.control.AddReplyControl;
 import com.yedam.board.control.BoardForm;
 import com.yedam.board.control.BoardListControl;
 import com.yedam.board.control.BoardSearchControl;
+import com.yedam.board.control.DelReplyControl;
+import com.yedam.board.control.EditReplyControl;
+import com.yedam.board.control.ReplyControl;
+import com.yedam.board.control.ReplyListControl;
 import com.yedam.calendar.control.AddEventControl;
 import com.yedam.calendar.control.EventForm;
 import com.yedam.calendar.control.EventListControl;
@@ -56,15 +61,21 @@ public class FrontController extends HttpServlet {
 		menu.put("/removeEvent.do", new RemoveEventControl());
 		
 		menu.put("/eventList.do", new EventListControl());
-
+		// 게시판
 		menu.put("/boardForm.do", new BoardForm());
 		menu.put("/boardList.do", new BoardListControl());
-		menu.put("/boardsearch.do", new BoardSearchControl());
+		menu.put("/boardInfo.do", new BoardSearchControl());
+		// 댓글
+		menu.put("/replyList.do", new ReplyListControl());
+		menu.put("/getReply.do", new ReplyControl());
+		menu.put("/addReply.do", new AddReplyControl());
+		menu.put("/editReply.do", new EditReplyControl());
+		menu.put("/delReply.do", new DelReplyControl());
 	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		req.setCharacterEncoding("UTF-8");
 		String uri = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String page = uri.substring(contextPath.length());
