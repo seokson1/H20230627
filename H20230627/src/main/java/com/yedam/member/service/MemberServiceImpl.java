@@ -50,4 +50,10 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.updateImage(vo) == 1;
 	}
 
+	@Override
+	public boolean addMember(MemberVO vo) {
+		
+		return mapper.insert(vo) == 1;
+	}
+
 }

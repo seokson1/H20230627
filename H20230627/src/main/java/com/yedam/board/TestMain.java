@@ -24,7 +24,7 @@ public class TestMain {
 		//mapper.updateReply(vo);
 		//mapper.deleteReply(2);
 		
-		List<ReplyVO> list = mapper.selectList(182);
+		List<ReplyVO> list = mapper.selectList(182, 10);
 		for(ReplyVO re : list) {
 			System.out.println(re.toString());
 		}

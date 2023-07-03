@@ -6,7 +6,9 @@ import com.yedam.board.vo.ReplyVO;
 
 public interface ReplyService {
 	
-	public List<ReplyVO> replyList(long brdNo);
+	public List<ReplyVO> replyList(long brdNo, int page);
+	
+	public int replyCount(long brdNo);
 	
 	public ReplyVO getReply(long replyNo);
 	

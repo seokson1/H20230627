@@ -13,5 +13,7 @@ public interface MemberService {
 	public boolean modifyMember(MemberVO vo);
 	public boolean modifyImage(MemberVO member);
 	
+	public boolean addMember(MemberVO vo);
+	
 }
 

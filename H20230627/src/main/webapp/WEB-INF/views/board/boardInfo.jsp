@@ -185,22 +185,32 @@
     const replyUL = document.querySelector('ul.chat');
     
     // 댓글목록(Ajax) - 댓글 가져오는 기능
-    fetch('replyList.do?brdNo='+bno)
+    function replyFnc(bno, page) {
+        
+    fetch('replyList.do?brdNo='+ bno + '&page=' + page)
     .then(function(response) {
 		console.log(response);
 		return response.json();
 	})
 	.then(function(result){
-		console.log(result);
-        for(let reply of result) {
+		console.log(result); // count: 값 list[] 목록 값 담겨있음.
+        if(page == -1) {
+            pageNum = Math.ceil(result.count / 10.0);
+            replyFnc(bno, pageNum);
+            return;
+        }
+        // 기존데이터 초기화
+        for(let reply of result.list) {
             replyUL.innerHTML += makeList(reply);
         }
         searchList();
+        showReplyPage(result.count);
 	})
     .catch(function(err){
     	console.error(err);
     })
-    
+}
+    replyFnc(bno, -1); // 첫페이지 출력.
     //수정 버튼
     document.querySelector('#modalModBtn').addEventListener('click', function(e){
          let rno = document.querySelector('#myModal input[name="replyNo"]').value;
@@ -241,6 +251,7 @@
     })
     */
    // 삭제
+  
     document.querySelector('#modalRemoveBtn').addEventListener('click', function(e){
     let rno = document.querySelector('#myModal input[name="replyNo"]').value;
     fetch('delReply.do?rno='+rno)
@@ -254,7 +265,9 @@
             console.error(err);
         })
 })
-   /*document.querySelector('#modalRemoveBtn').addEventListener('click', function(e){
+
+/*
+   document.querySelector('#modalRemoveBtn').addEventListener('click', function(e){
     let rno = document.querySelector('#myModal input[name="replyNo"]').value;
 
     fetch('delReply.do',{
@@ -289,8 +302,9 @@
     })
     .then(response => response.json())
     .then(result => {
-        replyUL.innerHTML += makeList(result);
-        searchList();
+       // replyUL.innerHTML += makeList(result);
+        //searchList();
+        replyFnc(bno, -1);
         //모달창 닫기
         modal.style.display = 'none';
         modal.style.opacity = 0;
@@ -314,18 +328,29 @@
         next = true;
     }
      // 계산한 값으로 페이지 출력.
-    let str = '<ul class="pagination pull-right>"';
+    let str = '<ul class="pagination pull-right">';
         if(prev) {
-            str += '<li class="page-item"><a href="">'+(startPage-1)+'</a></li>';
+            str += '<li class="page-item"><a data-page="'+(startPage-1)+'" href=""   class="paging"> Prev </a></li>';
         }
         for(let i=startPage; i<endPage; i++) {
-            str += '<li class="page-item"><a href="">'+i+'</a></li>';
+            str += '<li class="page-item"><a data-page="'+i+'" href="" class="paging">'+i+'</a></li>';
         }
         if(next) {
-            str += '<li class="page-item"><a href="">'+(endPage + 1)+'</a></li>';
+            str += '<li class="page-item"><a data-page="'+(endPage + 1)+' href="" " class="paging"> Next </a></li>';
         }
         str += '</ul>';
-        
+        document.querySelector('div.panel-footer').innerHTML = str;
+
+        // 링크클릭 이벤트.
+        document.querySelectorAll('a.paging').forEach(aTag => {
+           aTag.addEventListener('click', function(e){
+            e.preventDefault(); // 링크 기능 차단 a 태그
+            pageNum = aTag.dataset.page;
+            console.log(pageNum);
+            replyFnc(bno, pageNum); // 원본글, 페이지 호출
+           })
+        })
    }
+   //showReplyPage(156);
   
 </script>

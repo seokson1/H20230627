@@ -1,18 +1,15 @@
-package com.yedam;
+package com.yedam.member.control;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class MainControl implements Control {
+public class MemberListJquery implements Control {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) {
-		String page = "";
-		page="main/main.tiles";
-//		page = "prod/sample.tiles";
-		return page;
+		return "member/memberForm.tiles";
 	}
 
 }
